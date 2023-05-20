@@ -17,8 +17,11 @@ class Task(models.Model):
     user = models.ForeignKey(User, on_delete= models.CASCADE,null=True,blank=False)
     title = models.CharField(max_length=250)
     activity = models.TextField(max_length=1000)
+    minutes_to_task_start = models.IntegerField(blank=False,null=True)
     starting_time = models.DateTimeField()
     reminder_time =models.DateTimeField()
+    current_date = models.DateTimeField(auto_now=True)
+
 
     status_choice = (('Un attempted','Un attempted'),('Done','Done'))
     status = models.CharField(choices=status_choice, max_length=15,default='un attempted')
@@ -27,3 +30,4 @@ class Task(models.Model):
         return self.title
     class meta:
         order_with_respect_to ='user'
+        abstract = True

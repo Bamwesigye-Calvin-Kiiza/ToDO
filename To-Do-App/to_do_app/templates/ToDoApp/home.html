@@ -66,17 +66,23 @@
                 {%for task in tasks_list %}
                 <div class="item-row">
                             
-                    {% if task.status == Done %}
-                    <strike>{{task.title}}</strike>
+                    {% if task.status == "Done" %}
+                        <span><h3><a href="{% url 'ToDoApp:taskdetail'  task.id%}"><del>{{task.title}}</del></a></h3></span>
+                        <p><h4>Task completed</h4></p>
                     {% else %}
-                    <span><h3><a href="{% url 'ToDoApp:taskdetail'  task.id%}">{{task.title}}</a></h3></span>
-                    <p><b>Time</b>: {{task.starting_time.date}}({{task.starting_time.time}}) </p>
-                    <!-- <a href="{% url 'ToDoApp:taskdetail'  task.id%}">
-                        <span class="link"></span>
-                      </a> -->
+                        {% if task.starting_time == task.current_date %}
+                        <span><h3><a href="{% url 'ToDoApp:taskdetail'  task.id%}"><del>{{task.title}}</del></a></h3></span>
+                        <p><h4>Task skipped</h4></p>
+                        {% else %}
+                        <span><h3><a href="{% url 'ToDoApp:taskdetail'  task.id%}">{{task.title}}</a></h3></span>
+                        <p><b>Time</b>: {{task.starting_time.date}}({{task.starting_time.time}}) </p>
+                        <!-- <a href="{% url 'ToDoApp:taskdetail'  task.id%}">
+                            <span class="link"></span>
+                          </a> -->
+                        <a class="btn btn-sm btn-info" href="{% url 'ToDoApp:task-update' task.id%}">Update</a>
+                        <a class="btn btn-sm btn-danger" href="{% url 'ToDoApp:task-delete' task.id%}">Delete</a>
+                        {% endif %}
                     {% endif %}
-                    <a class="btn btn-sm btn-info" href="{% url 'ToDoApp:task-update' task.id%}">Update</a>
-                    <a class="btn btn-sm btn-danger" href="{% url 'ToDoApp:task-delete' task.id%}">Delete</a>
                 </div>
                 {%endfor%} 
                 {%else%}

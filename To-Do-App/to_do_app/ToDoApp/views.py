@@ -16,7 +16,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
 import datetime
 from django.views import generic
-
+from django.conf import settings
+from to_do_app.celery import app
+from celery import shared_task
 
 
 # Create your views here.
@@ -33,14 +35,10 @@ class TaskListView (LoginRequiredMixin,ListView):
         context = super().get_context_data(**kwargs)
         context['tasks_list']= context['task_list'].filter(user = self.request.user)
         return context
-
-class Home(LoginRequiredMixin,ListView):
-    model = Task
-    template_name = 'ToDoApp/home.html'
-    context_object_name = 'task_list'
-    queryset = Task.objects.order_by('starting_time')
     
-    # sending email if task list is time reminder time has reached 
+# @app.task(name = 'send_notification')
+@shared_task
+def send_notification():
     tasklist = Task.objects.all()
     if tasklist:
         for task in tasklist:
@@ -57,9 +55,39 @@ class Home(LoginRequiredMixin,ListView):
             if (duration_diff.days == 0) :
                 if (time_now == reminder_time):
                     subject = task.title
-                    To_Do_email_notification(task.user.email,f'Hello <b>{task.user.first_name}</b>,<br>This is just a simple notification about your to do activity titled "{task.title}" that is scheduled to start on {task.starting_time}<br>Click here to view task: <a href="https://todo-production-df7e.up.railway.app/{task.pk}/"><b>{task.title}</b></a><br>With regards<br>Calvin<br>To-do-admin',subject)
+                    message = f'Hello <b>{task.user.first_name}</b>,<br>This is just a simple notification about your to do activity titled "{task.title}" that is scheduled to start on {task.starting_time}<br>Click here to view task: <a href="https://todo-production-df7e.up.railway.app/{task.pk}/"><b>{task.title}</b></a><br>With regards<br>Calvin<br>To-do-admin'
+                    To_Do_email_notification(task.user.email,message,subject)
                 else:pass
             else:pass
+
+
+
+class Home(LoginRequiredMixin,ListView):
+    model = Task
+    template_name = 'ToDoApp/home.html'
+    context_object_name = 'task_list'
+    queryset = Task.objects.order_by('starting_time')
+    
+    # sending email if task list is time reminder time has reached 
+    # tasklist = Task.objects.all()
+    # if tasklist:
+    #     for task in tasklist:
+    #         task_reminder_time = task.reminder_time.date()
+    #         now_duration = datetime.datetime.now().date()
+    #         duration_diff = task_reminder_time - now_duration
+
+    #         time_now = datetime.datetime.now().time().replace(second=0,microsecond=0)
+    #         reminder_time = task.reminder_time.time().replace(second=0,microsecond=0)
+
+    #         print(time_now,reminder_time, duration_diff)
+            
+
+    #         if (duration_diff.days == 0) :
+    #             if (time_now == reminder_time):
+    #                 subject = task.title
+    #                 To_Do_email_notification(task.user.email,f'Hello <b>{task.user.first_name}</b>,<br>This is just a simple notification about your to do activity titled "{task.title}" that is scheduled to start on {task.starting_time}<br>Click here to view task: <a href="https://todo-production-df7e.up.railway.app/{task.pk}/"><b>{task.title}</b></a><br>With regards<br>Calvin<br>To-do-admin',subject)
+    #             else:pass
+    #         else:pass
 
     # tasklismenu = Task.objects.filter('user_id')
     # queryset = Task.objects.filter('user')
@@ -83,7 +111,7 @@ class Home(LoginRequiredMixin,ListView):
 
 class addTask(LoginRequiredMixin,CreateView):
     model = Task
-    fields = ('title','activity','starting_time','reminder_time','status')
+    fields = ('title','activity','starting_time','minutes_to_task_start','status')
     template_name = 'ToDoApp/taskform.html'
     success_url = reverse_lazy('ToDoApp:home')
 
@@ -106,6 +134,8 @@ class addTask(LoginRequiredMixin,CreateView):
         startingtask = form.instance.starting_time.date()
         duration = datetime.datetime.now().date()
         date_diff = startingtask-duration
+        reminder_time_minutes = form.instance.minutes_to_task_start
+        form.instance.reminder_time = form.instance.starting_time-datetime.timedelta(minutes = reminder_time_minutes)
         
         if (date_diff.days)>(7):
             form.add_error('starting_time','Task should not be set for a period beyond a week')
@@ -167,14 +197,6 @@ def register(request):
             user.save()
             subject = 'Account Creation'
             To_Do_email_notification(user.email,f'Hello <b>{user.first_name}</b><br>You have successfully created an account with us.<br> With regards<br>To Do Team <br>',subject)
-
-            # profile = user_profile_form.save(commit = False)
-            # profile.user = user
-
-            # if 'profile_picture' in request.FILES:
-            #      profile.profile_picture = request.FILES['profile_picture']
-
-            # profile.save()
 
             registered = True
 

@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "ToDoApp",
+    'django_celery_results',
+
 ]
 
 MIDDLEWARE = [
@@ -152,6 +154,21 @@ STORAGES = {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
 }
+
+
+
+# Celery Configuration
+CELERY_BROKER_URL = 'redis://localhost:6379/0'  # Replace with your broker URL
+CELERY_RESULT_BACKEND = 'django-db'  # Optional: Use Django database as the result backend
+
+# Celery Beat Configuration (for periodic tasks)
+CELERY_BEAT_SCHEDULE = {
+    'run_every_minute': {
+        'task': 'ToDoApp.views.send_notification',  # Task function to run
+        'schedule': 60.0,  # Run every 60 seconds (1 minute)
+    },
+}
+
 
 # media 
 MEDIA_URL = 'media/'
