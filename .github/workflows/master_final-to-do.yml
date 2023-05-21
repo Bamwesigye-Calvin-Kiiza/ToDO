@@ -30,7 +30,7 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: index.docker.io/bamwesigyecalvinkiiza/bamwesigyecalvinkiiza/final:${{ github.sha }}
+        tags: index.docker.io/bamwesigyecalvinkiiza/to_do_app:${{ github.sha }}
         file: ./To-Do-App/to_do_app/Dockerfile
 
   deploy:
