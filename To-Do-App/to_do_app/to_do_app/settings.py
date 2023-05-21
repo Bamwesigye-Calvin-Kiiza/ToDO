@@ -136,7 +136,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-CSRF_TRUSTED_ORIGINS = ['https://todo-production-df7e.up.railway.app','https://*.127.0.0.1','https://todo-production-0bb0.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://todo-production-df7e.up.railway.app','https://*.127.0.0.1','https://todo-production-0bb0.up.railway.app','https://to-do-task-app.azurewebsites.net']
 
 
 STATIC_URL = 'static/'
