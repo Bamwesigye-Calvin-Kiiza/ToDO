@@ -45,7 +45,7 @@ jobs:
       id: deploy-to-webapp
       uses: azure/webapps-deploy@v2
       with:
-        app-name: 'final-to-do-do'
+        app-name: 'final-to-do'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_16925711cbf74d048e8b43a5475cde99 }}
         images: index.docker.io/bamwesigyecalvinkiiza/final:${{ github.sha }}
