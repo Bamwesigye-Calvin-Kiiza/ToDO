@@ -17,14 +17,21 @@
 # CMD [ "python3","manage.py","runserver"]
 # syntax=docker/dockerfile:1
 
-FROM python:3.8
+FROM python:3.11.2-bullseye
 
+#set the working directory to /app
 WORKDIR /app
 
-COPY ./To-Do-App/to_do_app/requirements.txt requirements.txt
+#Copy the requirements.txt file
+COPY requirements.txt requirements.txt
+
+#install the needed packages
 RUN pip3 install -r requirements.txt
 
+#copy all the code
 COPY . /app
+
+#set the working directory 
 WORKDIR /app/To-Do-App/to_do_app
 
 EXPOSE 8000
