@@ -1,0 +1,22 @@
+name: Build and Deploy Docker Image to GCR
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Configure Docker
+      run: |
+       docker login --username=benkyeyune --password=Starlight10.
+
+    - name: Build and push Docker image
+      uses: docker/build-push-action@v2
+      with:
+        #file: ./MakWebSystem/Dockerfile
+        push: true
+        tags: benkyeyune/to-do:latest
