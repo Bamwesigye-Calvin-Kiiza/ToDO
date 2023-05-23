@@ -21,7 +21,7 @@ FROM python:3.8
 
 WORKDIR /app
 
-COPY ./To-Do-App/requirements.txt /app/requirements.txt
+COPY . /To-Do-App/to_do_list/requirements.txt
 RUN pip3 install -r requirements.txt
 
 COPY . /app
