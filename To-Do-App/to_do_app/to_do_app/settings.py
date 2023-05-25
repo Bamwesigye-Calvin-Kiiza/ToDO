@@ -157,6 +157,21 @@ STORAGES = {
 }
 
 
+CACHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': 'redis://10.32.78.195:6379/0',  # Replace HOST and PORT with your Redis instance details
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+        },
+        'KEY_PREFIX': 'to_do_app',  # Set an appropriate cache key prefix
+    }
+}
+
+SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+SESSION_CACHE_ALIAS = 'default'
+
+
 
 # Celery Configuration
 CELERY_BROKER_URL = 'redis://localhost:6379/0'  # Replace with your broker URL
