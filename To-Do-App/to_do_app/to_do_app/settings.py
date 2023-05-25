@@ -13,6 +13,12 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from pathlib import Path
 import os
 import django_redis.cache
+import redis
+
+# Connect to Redis
+redis_client = redis.Redis(host='10.32.78.195', port=6379)
+
+
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -162,7 +168,7 @@ STORAGES = {
 CACHES = {
     'default': {
         'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': 'redis://10.32.78.195:6379/0',  # Replace HOST and PORT with your Redis instance details
+        'LOCATION': redis.Redis(host='10.32.78.195', port=6379),  # Replace HOST and PORT with your Redis instance details
         'OPTIONS': {
             'CLIENT_CLASS': 'django_redis.client.DefaultClient',
         },
@@ -176,7 +182,7 @@ SESSION_CACHE_ALIAS = 'default'
 
 
 # Celery Configuration
-CELERY_BROKER_URL = 'redis://10.32.78.195:6379/0'  # Replace with your broker URL
+CELERY_BROKER_URL = redis.Redis(host='10.32.78.195', port=6379),  # Replace with your broker URL
 CELERY_RESULT_BACKEND = 'django-db'  # Optional: Use Django database as the result backend
 
 # Celery Beat Configuration (for periodic tasks)
