@@ -176,7 +176,7 @@ SESSION_CACHE_ALIAS = 'default'
 
 
 # Celery Configuration
-CELERY_BROKER_URL = 'redis://10.32.78.195:6379/0'  # Replace with your broker URL
+# CELERY_BROKER_URL = 'redis://localhost:6379/0'  # Replace with your broker URL
 CELERY_RESULT_BACKEND = 'django-db'  # Optional: Use Django database as the result backend
 
 # Celery Beat Configuration (for periodic tasks)
