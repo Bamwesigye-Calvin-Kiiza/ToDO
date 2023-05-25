@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
+import django_redis.cache
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -174,7 +176,7 @@ SESSION_CACHE_ALIAS = 'default'
 
 
 # Celery Configuration
-CELERY_BROKER_URL = 'redis://localhost:6379/0'  # Replace with your broker URL
+CELERY_BROKER_URL = 'redis://10.32.78.195:6379/0'  # Replace with your broker URL
 CELERY_RESULT_BACKEND = 'django-db'  # Optional: Use Django database as the result backend
 
 # Celery Beat Configuration (for periodic tasks)
