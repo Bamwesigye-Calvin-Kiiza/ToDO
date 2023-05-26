@@ -162,7 +162,7 @@ STORAGES = {
 CACHES = {
     'default': {
         'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': 'redis://10.32.78.195:6379/0',  # Replace HOST and PORT with your Redis instance details
+        'LOCATION': 'redis://:4d657562-a60a-437a-b797-22fadfb34435@10.32.78.195:6379/0',  # Replace HOST and PORT with your Redis instance details
         'OPTIONS': {
             'CLIENT_CLASS': 'django_redis.client.DefaultClient',
         },
@@ -177,7 +177,7 @@ CACHES = {
 
 # Celery Configuration
 # CELERY_BROKER_URL = 'redis://localhost:6379/0'  # Replace with your broker URL
-CELERY_BROKER_URL = 'redis://10.32.78.195:6379/0'
+CELERY_BROKER_URL = 'redis://:4d657562-a60a-437a-b797-22fadfb34435@10.32.78.195:6379/0'
 CELERY_RESULT_BACKEND = 'django-db'  # Optional: Use Django database as the result backend
 
 # Celery Beat Configuration (for periodic tasks)
