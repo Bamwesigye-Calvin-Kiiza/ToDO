@@ -68,6 +68,7 @@ class Home(LoginRequiredMixin,ListView):
     context_object_name = 'task_list'
     queryset = Task.objects.order_by('starting_time')
     
+    
     # sending email if task list is time reminder time has reached 
     # tasklist = Task.objects.all()
     # if tasklist:
@@ -96,6 +97,8 @@ class Home(LoginRequiredMixin,ListView):
         context = super().get_context_data(**kwargs)
         context['tasks_list'] = context['task_list'].filter(user = self.request.user).order_by('starting_time')
         context['count'] = context['task_list'].filter(status = 'Un attempted').count()
+        context['current_date'] = datetime.datetime.now().date()
+        context['current_time'] = datetime.datetime.now().time()
 
         search_input = self.request.GET.get('search-area') or ''
         if search_input:

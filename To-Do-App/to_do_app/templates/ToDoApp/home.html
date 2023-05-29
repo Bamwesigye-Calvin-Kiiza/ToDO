@@ -70,7 +70,7 @@
                         <span><h3><a href="{% url 'ToDoApp:taskdetail'  task.id%}"><del>{{task.title}}</del></a></h3></span>
                         <p><h4>Task completed</h4></p>
                     {% else %}
-                    {% if task.current_date > task.starting_time %}
+                    {% if current_date > task.starting_time.date %}
                         <span><h3><a href="{% url 'ToDoApp:taskdetail'  task.id%}"><del>{{task.title}}</del></a></h3></span>
                         <p><h4>Task skipped</h4></p>
                         {% else %}
@@ -81,7 +81,7 @@
                           </a> -->
                         <a class="btn btn-sm btn-info" href="{% url 'ToDoApp:task-update' task.id%}">Update</a>
                         <a class="btn btn-sm btn-danger" href="{% url 'ToDoApp:task-delete' task.id%}">Delete</a>
-                        {% endif %}
+                    {% endif %}
                     {% endif %}
                 </div>
                 {%endfor%} 
