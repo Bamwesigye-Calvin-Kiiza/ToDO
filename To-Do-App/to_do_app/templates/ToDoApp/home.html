@@ -70,7 +70,7 @@
                         <span><h3><a href="{% url 'ToDoApp:taskdetail'  task.id%}"><del>{{task.title}}</del></a></h3></span>
                         <p><h4>Task completed</h4></p>
                     {% else %}
-                        {% if task.starting_time == task.current_date %}
+                    {% if task.current_date > task.starting_time %}
                         <span><h3><a href="{% url 'ToDoApp:taskdetail'  task.id%}"><del>{{task.title}}</del></a></h3></span>
                         <p><h4>Task skipped</h4></p>
                         {% else %}
