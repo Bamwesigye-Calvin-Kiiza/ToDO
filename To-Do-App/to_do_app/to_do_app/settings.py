@@ -158,17 +158,24 @@ STORAGES = {
     },
 }
 
+import redis
 
-CACHES = {
-    'default': {
-        'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': 'redis://:4d657562-a60a-437a-b797-22fadfb34435@10.32.78.195:6379/0',  # Replace HOST and PORT with your Redis instance details
-        'OPTIONS': {
-            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
-        },
-        'KEY_PREFIX': 'to_do',  # Set an appropriate cache key prefix
-    }
-}
+r = redis.Redis(
+  host='redis-12301.c280.us-central1-2.gce.cloud.redislabs.com',
+  port=12301,
+  password='CN3MPqANvwvYTcXSyjtDATjtCJUScCnc')
+
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django_redis.cache.RedisCache',
+#         'LOCATION': 'redis://:4d657562-a60a-437a-b797-22fadfb34435@10.32.78.195:6379/0',  # Replace HOST and PORT with your Redis instance details
+#         'OPTIONS': {
+#             'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+#         },
+#         'KEY_PREFIX': 'to_do',  # Set an appropriate cache key prefix
+#     }
+# }
+
 
 # SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
 # SESSION_CACHE_ALIAS = 'default'
@@ -176,8 +183,9 @@ CACHES = {
 
 
 # Celery Configuration
+CELERY_BROKER_URL = 'redis://default:CN3MPqANvwvYTcXSyjtDATjtCJUScCnc@redis-12301.c280.us-central1-2.gce.cloud.redislabs.com:12301'
 # CELERY_BROKER_URL = 'redis://localhost:6379/0'  # Replace with your broker URL
-CELERY_BROKER_URL = 'redis://:4d657562-a60a-437a-b797-22fadfb34435@10.32.78.195:6379/0'
+# CELERY_BROKER_URL = 'redis://:4d657562-a60a-437a-b797-22fadfb34435@10.32.78.195:6379/0'
 CELERY_RESULT_BACKEND = 'django-db'  # Optional: Use Django database as the result backend
 
 # Celery Beat Configuration (for periodic tasks)
