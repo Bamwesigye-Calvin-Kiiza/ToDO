@@ -215,7 +215,7 @@ def register(request):
         'registered':registered,
     })
 
-class user_login(LoginRequiredMixin,LoginView):
+class user_login(LoginView):
     template_name = 'ToDoApp/login.html'
     fields = '__all__'
     redirect_authenticated_user = True
@@ -265,7 +265,7 @@ class TaskDetail(LoginRequiredMixin,DetailView):
 #     # if request.method == 'GET':
 #         taskss = Task.objects.get(id = id)
 #         return render(request,'ToDoApp/taskdetail.html',{'taskss':taskss})
-class TaskUpdate(LoginRequiredMixin,UpdateView):
+class TaskUpdate(LoginRequiredMixin, UpdateView):
     model = Task
     fields =('title','activity','starting_time','reminder_time','status')
     template_name = 'ToDoApp/edit.html'

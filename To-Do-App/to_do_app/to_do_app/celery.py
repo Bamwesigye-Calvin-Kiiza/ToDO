@@ -10,13 +10,6 @@ app.config_from_object('django.conf:settings', namespace='CELERY')
 
 app.autodiscover_tasks()
 
-@app.task(bind=True)
-def debug_task(self):
-    print("hello from celery")
-
-@app.task
-def print_hello():
-    print('hello from function')
 
 app.autodiscover_tasks(lambda:settings.INSTALLED_APPS)
 app.conf.beat_schedule = {

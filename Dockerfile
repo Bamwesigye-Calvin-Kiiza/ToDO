@@ -38,4 +38,6 @@ EXPOSE 8000
 
 # CMD ["python3","manage.py","runserver","0.0.0.0:8000","celery" ,"-A", "to_do_app", "worker" ,"--beat"]
 CMD bash -c "python3 manage.py runserver 0.0.0.0:8000 & celery -A to_do_app worker --beat"
+# celery -A to_do_app worker --loglevel=info
+
 
