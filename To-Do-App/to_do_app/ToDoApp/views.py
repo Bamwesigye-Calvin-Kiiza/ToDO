@@ -112,7 +112,7 @@ class Home(LoginRequiredMixin,ListView):
 #     return render(request,'ToDoApp/home.html',{'task_list':task_list})
 
 
-class addTask(CreateView):
+class addTask(LoginRequiredMixin,CreateView):
     model = Task
     fields = ('title','activity','starting_time','minutes_to_task_start','status')
     template_name = 'ToDoApp/taskform.html'
@@ -215,7 +215,7 @@ def register(request):
         'registered':registered,
     })
 
-class user_login(LoginView):
+class user_login(LoginRequiredMixin,LoginView):
     template_name = 'ToDoApp/login.html'
     fields = '__all__'
     redirect_authenticated_user = True
@@ -255,7 +255,7 @@ def  user_logout(request):
 
 # detail vieew
 
-class TaskDetail(DetailView):
+class TaskDetail(LoginRequiredMixin,DetailView):
     model = Task
     template_name = 'ToDoApp/taskdetail.html'
     context_object_name = 'task'
@@ -265,20 +265,20 @@ class TaskDetail(DetailView):
 #     # if request.method == 'GET':
 #         taskss = Task.objects.get(id = id)
 #         return render(request,'ToDoApp/taskdetail.html',{'taskss':taskss})
-class TaskUpdate(UpdateView):
+class TaskUpdate(LoginRequiredMixin,UpdateView):
     model = Task
     fields =('title','activity','starting_time','reminder_time','status')
     template_name = 'ToDoApp/edit.html'
     success_url = reverse_lazy('ToDoApp:home')
 
 
-class DeleteView( DeleteView):
+class DeleteView(LoginRequiredMixin, DeleteView):
     model = Task
     context_object_name = 'tasks'
     template_name = 'ToDoApp/delete.html'
     success_url = reverse_lazy('ToDoApp:home')
 
-class calendar (generic.View):
+class calendar (LoginRequiredMixin,generic.View):
     model = Task
     template_name = 'ToDoApp/calendar.html'
     context_object_name = 'task_list'
