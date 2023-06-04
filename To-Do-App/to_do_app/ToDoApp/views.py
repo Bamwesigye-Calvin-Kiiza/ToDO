@@ -46,8 +46,8 @@ def send_notification():
             now_duration = datetime.datetime.now().date()
             duration_diff = task_reminder_time - now_duration
 
-            time_now = datetime.datetime.now().time().replace(second=0,microsecond=0)
-            reminder_time = task.reminder_time.time().replace(second=0,microsecond=0)
+            time_now = datetime.datetime.now().time().replace(second=0,microsecond=0)-datetime.timedelta(minutes=180)
+            reminder_time = task.reminder_time.time().replace(second=0,microsecond=0)-datetime.timedelta(minutes=180)
 
             print(time_now,reminder_time, duration_diff)
             
