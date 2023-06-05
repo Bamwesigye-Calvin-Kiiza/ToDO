@@ -165,18 +165,18 @@ r = redis.Redis(
   port=12301,
   password='CN3MPqANvwvYTcXSyjtDATjtCJUScCnc')
 
-import pytz
-from datetime import datetime
+# import pytz
+# from datetime import datetime
 
-# Get the current time in UTC
-current_time = datetime.now()
+# # Get the current time in UTC
+# current_time = datetime.now()
 
-# Convert the time to the Nairobi timezone
-nairobi_timezone = pytz.timezone('Africa/Nairobi')
-nairobi_time = current_time.astimezone(nairobi_timezone)
+# # Convert the time to the Nairobi timezone
+# nairobi_timezone = pytz.timezone('Africa/Nairobi')
+# nairobi_time = current_time.astimezone(nairobi_timezone)
 
-# Store the Nairobi time in Redis
-redis.set('current_time', nairobi_time)
+# # Store the Nairobi time in Redis
+# redis.set('current_time', nairobi_time)
 
 
 # CACHES = {
