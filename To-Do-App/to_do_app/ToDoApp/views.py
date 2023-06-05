@@ -57,7 +57,7 @@ def send_notification():
             if (duration_diff.days == 0) :
                 if (time_now == reminder_time):
                     subject = task.title
-                    message = f'Hello <b>{task.user.first_name}</b>,<br>This is just a simple notification about your to do activity titled "{task.title}" that is scheduled to start on {task.starting_time}<br>Click here to view task: <a href="https://todo-production-df7e.up.railway.app/{task.pk}/"><b>{task.title}</b></a><br>With regards<br>Calvin<br>To-do-admin'
+                    message = f'Hello <b>{task.user.first_name}</b>,<br>This is just a simple notification about your to do activity titled "{task.title}" that is scheduled to start on {task.starting_time}<br>Click here to view task: <a href="https://to-do-cwohr7x6qa-uc.a.run.app/{task.pk}/"><b>{task.title}</b></a><br>With regards<br>Calvin<br>To-do-admin'
                     To_Do_email_notification(task.user.email,message,subject)
                 else:pass
             else:pass
