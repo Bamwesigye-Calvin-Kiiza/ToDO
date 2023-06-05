@@ -310,3 +310,5 @@ class calendar (LoginRequiredMixin,generic.View):
             )
         context = {"events": event_list}
         return render(request, self.template_name, context)
+    
+#   time set
