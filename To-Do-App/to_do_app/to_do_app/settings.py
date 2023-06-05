@@ -170,6 +170,20 @@ r = redis.Redis(
 
 # # Get the current time in UTC
 # current_time = datetime.now()
+import pytz
+from datetime import datetime
+
+# Get the current time in Nairobi timezone
+nairobi_timezone = pytz.timezone('Africa/Nairobi')
+current_time = datetime.now(nairobi_timezone)
+
+# Convert the time to UTC before storing it in Redis
+utc_timezone = pytz.timezone('UTC')
+utc_time = current_time.astimezone(utc_timezone)
+
+# Store the UTC time in Redis
+redis.set('current_time', utc_time)
+
 
 # # Convert the time to the Nairobi timezone
 # nairobi_timezone = pytz.timezone('Africa/Nairobi')
