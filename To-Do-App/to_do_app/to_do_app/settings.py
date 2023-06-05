@@ -169,7 +169,7 @@ import pytz
 from datetime import datetime
 
 # Get the current time in UTC
-current_time = datetime.now(pytz.utc)
+current_time = datetime.now()
 
 # Convert the time to the Nairobi timezone
 nairobi_timezone = pytz.timezone('Africa/Nairobi')
