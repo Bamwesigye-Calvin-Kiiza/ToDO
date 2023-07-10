@@ -1,5 +1,7 @@
 # To-Do App
 The To-Do App is a web-based application that allows users to create, edit, and delete tasks. It helps users organize their daily and weekly tasks and schedule them according to their preferences. The app also provides reminder functionality by sending email notifications to users on specified dates.
+## link to the hosted app sofar 
+https://to-do-cwohr7x6qa-uc.a.run.app/
 
 ## Features
 ### Create tasks: 
@@ -26,10 +28,12 @@ pip install -r requirements.txt
 
 ## Set up the database: 
 Run the necessary commands to create the database schema and tables.
+
 ## Configure email settings:
 Provide the required Gmail API  app's configuration file.
 Start the application: Run python manage.py runserver to start the Flask server.
 Access the app: Open your web browser and go to http://localhost:5000 to use the To-Do App.
+
 ## Usage
 Sign up for an account or log in if you already have one.
 Create a new task by clicking on the "Add Task" button and providing the required details.
