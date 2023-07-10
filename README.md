@@ -32,7 +32,7 @@ Run the necessary commands to create the database schema and tables.
 ## Configure email settings:
 Provide the required Gmail API  app's configuration file.
 Start the application: Run python manage.py runserver to start the Flask server.
-Access the app: Open your web browser and go to http://localhost:5000 to use the To-Do App.
+Access the app: Open your web browser and go to (https://github.com/Bamwesigye-Calvin-Kiiza/ToDO.git) to use the To-Do App.
 
 ## Usage
 Sign up for an account or log in if you already have one.
