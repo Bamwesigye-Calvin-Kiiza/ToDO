@@ -3,7 +3,7 @@ import base64
 from  email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
-CLIENT_FILE = '/home/calvin/Downloads/todo/ToDO/To-Do-App/to_do_app/ToDoApp/client.json'
+CLIENT_FILE = 'C:/Users/Bamwesigye Calvin/Desktop/todo/ToDO/To-Do-App/to_do_app/ToDoApp/client.json'
 API_NAME = 'gmail'
 API_VERSION = 'v1'
 SCORES = ['https://mail.google.com/']
