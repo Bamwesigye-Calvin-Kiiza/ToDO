@@ -31,7 +31,7 @@ Run the necessary commands to create the database schema and tables.
 
 ## Configure email settings:
 Provide the required Gmail API  app's configuration file.
-Start the application: Run python manage.py runserver to start the Flask server.
+Start the application: Run python manage.py runserver to start the Django server.
 Access the app: Open your web browser and go to (https://github.com/Bamwesigye-Calvin-Kiiza/ToDO.git) to use the To-Do App.
 
 ## Usage

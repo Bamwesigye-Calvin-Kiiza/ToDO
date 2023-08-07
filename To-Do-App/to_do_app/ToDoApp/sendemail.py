@@ -2,8 +2,11 @@ from .email1 import Create_Service
 import base64
 from  email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from pathlib import Path
+import os
 
-CLIENT_FILE = 'C:/Users/Bamwesigye Calvin/Desktop/todo/ToDO/To-Do-App/to_do_app/ToDoApp/client.json'
+BASE_DIR = Path(__file__).resolve().parent.parent
+CLIENT_FILE = os.path.join(BASE_DIR,'ToDoApp/client.json')
 API_NAME = 'gmail'
 API_VERSION = 'v1'
 SCORES = ['https://mail.google.com/']
