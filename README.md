@@ -1,7 +1,8 @@
 # To-Do App
 The To-Do App is a web-based application that allows users to create, edit, and delete tasks. It helps users organize their daily and weekly tasks and schedule them according to their preferences. The app also provides reminder functionality by sending email notifications to users on specified dates.
-## link to the hosted app sofar 
-https://to-do-cwohr7x6qa-uc.a.run.app/
+
+[//]: # ## link to the hosted app sofar 
+[//]: # https://to-do-cwohr7x6qa-uc.a.run.app/
 
 ## Features
 ### Create tasks: 
